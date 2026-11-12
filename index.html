@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Frecuencia que Emites</title>
+<meta name="description" content="7 descubrimientos científicos sobre la energía invisible que influye en tu cuerpo, tus emociones y tus relaciones. Haz el test y recibe tu informe personal de regalo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Una columna de lectura sobre azul noche. Hero con ondas, siete descubrimientos, y al final el test con su informe de regalo. */
+:root {
+  --bg: #070d1c; --panel: #0e1730; --callout: #12244a; --line: #1b2a4d;
+  --text: #e8eefc; --muted: #9fb0d4; --accent: #3cc3f5; --warn: #ffb86b;
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.65; font-size: 17px; }
+a { color: var(--accent); }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+.top { position: sticky; top: 0; z-index: 5; background: rgba(7,13,28,.92); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 52px; max-width: 960px; }
+.brand { font-weight: 800; letter-spacing: .14em; font-size: 12px; text-transform: uppercase; }
+.brand span { color: var(--accent); }
+.btn { font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block;
+  padding: 11px 22px; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--bg); }
+.btn.sm { font-size: 14px; padding: 9px 18px; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-top: 72px; padding-bottom: 64px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+h1 { font-size: clamp(32px, 7vw, 54px); line-height: 1.05; font-weight: 800; text-transform: uppercase; margin: 0 0 18px; text-wrap: balance; }
+.lead { font-size: clamp(18px, 3vw, 22px); color: var(--accent); font-weight: 500; line-height: 1.4; max-width: 34ch; margin: 0 0 26px; }
+.meta { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+section.read { padding: 8px 0; }
+h2 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 56px 0 14px; line-height: 1.3; text-wrap: balance; }
+p { margin: 0 0 14px; }
+ul.plain { margin: 0 0 16px; padding-left: 22px; }
+.hook { font-weight: 700; font-size: 19px; line-height: 1.45; margin-top: 44px; }
+.table-wrap { overflow-x: auto; margin: 0 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 480px; }
+td { border: 1px solid var(--line); padding: 8px 12px; vertical-align: top; }
+td:first-child { font-weight: 700; letter-spacing: .06em; }
+.practice { background: var(--callout); border-radius: 12px; padding: 14px 18px; margin: 22px 0 0; }
+.practice b { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.practice p { margin: 0; font-size: 16px; }
+.closing { font-weight: 700; font-size: 20px; line-height: 1.4; margin: 56px 0 0; text-wrap: balance; }
+
+/* test */
+.test { margin-top: 72px; padding: 56px 0 72px; border-top: 1px solid var(--line);
+  background: repeating-linear-gradient(90deg, rgba(60,195,245,.04) 0 1px, transparent 1px 38px); }
+.test .wrap { max-width: 760px; }
+h2.t { font-size: clamp(28px, 6vw, 42px); line-height: 1.08; font-weight: 800; letter-spacing: 0; margin: 0 0 12px; color: var(--text); text-transform: none; }
+h2.t span { color: var(--accent); }
+.intro { color: var(--muted); margin: 0 0 20px; max-width: 62ch; }
+.giftbox { background: var(--panel); border: 1px solid var(--accent); border-radius: 14px; padding: 16px 18px; margin: 0 0 26px; }
+.giftbox b { display: block; color: var(--accent); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 6px; }
+.giftbox ul { margin: 6px 0 0; padding-left: 20px; color: var(--text); font-size: 15px; }
+.area { display: grid; grid-template-columns: minmax(150px, 230px) 1fr; gap: 10px 16px; align-items: center;
+  background: var(--panel); border: 1px solid transparent; border-radius: 12px; padding: 12px 16px; margin: 0 0 10px; transition: border-color .2s; }
+.area.low { border-color: var(--accent); }
+.name { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); line-height: 1.3; }
+.desc { font-size: 14px; line-height: 1.4; }
+.scale { display: grid; grid-template-columns: repeat(11, 1fr); gap: 6px; }
+.scale label { position: relative; display: block; }
+.scale input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; aspect-ratio: 1; width: 100%; max-width: 30px; margin-inline: auto;
+  border: 1.5px solid var(--accent); border-radius: 50%; font-size: 11px; transition: background .15s, color .15s, transform .15s; }
+.scale label:hover span { background: rgba(60,195,245,.2); }
+.scale input:checked + span { background: var(--accent); color: var(--bg); font-weight: 700; transform: scale(1.08); }
+.scale input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+.progress { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+.q { margin: 26px 0 0; }
+.q label { display: block; font-size: 15px; margin-bottom: 4px; }
+.q textarea { width: 100%; min-height: 56px; resize: vertical; background: transparent; color: var(--text); border: 0; border-bottom: 1px solid var(--line); font: inherit; padding: 8px 0; }
+.q textarea:focus { outline: none; border-bottom-color: var(--accent); }
+.hint { font-size: 14px; color: var(--accent); margin: 2px 0 0; min-height: 1.5em; }
+.submit { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.status { font-size: 13px; color: var(--muted); }
+.status.err { color: var(--warn); }
+
+/* tarjetas de resultado */
+.card { margin-top: 36px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px 18px; scroll-margin-top: 70px; }
+.card h3 { margin: 0 0 4px; font-size: 22px; }
+.avg { font-size: 48px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.avg small { font-size: 16px; color: var(--muted); font-weight: 500; }
+.ptitle { margin: 6px 0 4px; font-size: 20px; }
+.profile { color: var(--muted); margin: 0 0 14px; }
+.radar { display: block; width: 100%; max-width: 440px; margin: 0 auto 10px; }
+.radar text { fill: var(--text); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.radar .ring { fill: none; stroke: var(--line); }
+.radar .axis { stroke: var(--line); }
+.radar .shape { fill: rgba(60,195,245,.25); stroke: var(--accent); stroke-width: 2; }
+.radar .dot { fill: var(--accent); }
+.lowline { font-weight: 700; }
+.lock { margin: 16px 0 0; padding: 14px 16px 14px 36px; background: var(--callout); border-radius: 12px; font-size: 15px; }
+.lock li { margin: 3px 0; }
+.lock b { display: block; margin-left: -20px; margin-bottom: 4px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin: 18px 0 6px; }
+.fields .full { grid-column: 1 / -1; }
+.fields label.l { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.fields input[type="text"], .fields input[type="email"] { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 10px; font: inherit; padding: 11px 12px; }
+.fields input:focus { outline: none; border-color: var(--accent); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--text); line-height: 1.5; margin-top: 10px; }
+.check input { margin-top: 4px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+.check.opt { color: var(--muted); }
+details.legal { margin-top: 12px; font-size: 13px; color: var(--muted); }
+details.legal summary { cursor: pointer; color: var(--accent); }
+details.legal dl { margin: 8px 0 0; }
+details.legal dt { font-weight: 700; color: var(--text); margin-top: 6px; }
+details.legal dd { margin: 0; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* informe completo */
+.rsec { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.rsec > h4 { margin: 0 0 12px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.zrow, .arow { display: grid; grid-template-columns: 120px 1fr 56px; gap: 10px; align-items: center; font-size: 14px; margin: 6px 0; }
+.zrow b, .arow b { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.track { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.fill { height: 100%; background: var(--accent); }
+.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.delta { color: var(--muted); font-weight: 400; font-size: 12px; }
+.pat { background: var(--callout); border-radius: 12px; padding: 12px 16px; margin: 0 0 10px; }
+.pat b { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.pat p { margin: 0; font-size: 15px; }
+.focus { margin-bottom: 22px; }
+.focus h5 { margin: 0 0 4px; font-size: 18px; }
+.chip { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); margin-left: 8px; vertical-align: middle; }
+.why { color: var(--muted); font-size: 15px; }
+.rest details { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0 0 8px; }
+.rest summary { cursor: pointer; font-weight: 700; }
+.rest details p { margin: 8px 0 0; font-size: 15px; }
+ol.plan { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+ol.plan li { display: grid; grid-template-columns: 62px 1fr; gap: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+ol.plan .d { font-weight: 800; color: var(--accent); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+ol.plan b { display: block; }
+ol.plan p { margin: 2px 0 0; font-size: 15px; }
+.commit { background: var(--callout); border-radius: 12px; padding: 12px 16px; font-size: 15px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+.legal-foot { font-size: 12px; color: var(--muted); margin-top: 28px; max-width: 70ch; }
+
+@media (max-width: 560px) {
+  .area { grid-template-columns: 1fr; }
+  .scale { gap: 3px; }
+  .scale span { max-width: 26px; font-size: 10px; }
+  .hero .wrap { padding-top: 48px; padding-bottom: 44px; }
+  .fields { grid-template-columns: 1fr; }
+  .zrow, .arow { grid-template-columns: 96px 1fr 50px; }
+  ol.plan li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="brand">Neuro<span>Mystic</span> Flow</span>
+    <a class="btn ghost sm" href="#test" data-go="test">Test + regalo</a>
+  </div>
+</header>
+
+<div class="hero">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">7 descubrimientos, un test y un regalo</p>
+    <h1>La energía que no ves. La frecuencia que emites.</h1>
+    <p class="lead">7 descubrimientos científicos sobre la energía invisible que influye en tu cuerpo, tus emociones y tus relaciones.</p>
+    <a class="btn" href="#test" data-go="test">Hacer el test y recibir mi informe</a>
+    <p class="meta">2 minutos. Tu informe personal es un regalo. O sigue leyendo: cada descubrimiento trae una práctica corta.</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="read">
+    <p class="hook">¿Te ha pasado que entras en un lugar y notas el ambiente antes de que alguien diga algo? ¿O sentir cómo una canción te cambia el ánimo en cuestión de segundos?</p>
+    <p>Solemos llamarlo energía o vibración. Durante mucho tiempo estos conceptos parecían más místicos que científicos. Pero la realidad muestra que tu cuerpo es, literalmente, un sistema de ritmos y señales. El corazón late a una frecuencia. El cerebro produce ondas eléctricas. La respiración sube y baja en ciclos, y lo que sientes, escuchas y piensas también tiene su ritmo.</p>
+    <p>En esta guía encontrarás 7 descubrimientos que te ayudarán a entender la frecuencia que emites cada día. Cada uno trae una pequeña práctica para que empieces hoy mismo.</p>
+
+    <h2 id="d1">Descubrimiento 1: Tu cuerpo funciona con electricidad</h2>
+    <p>Cada latido de tu corazón empieza con un pequeño impulso eléctrico. Cada pensamiento, cada movimiento y cada sensación dependen de señales eléctricas que viajan por tus nervios. No es una metáfora. Es fisiología básica.</p>
+    <p>Por eso existen pruebas como el electrocardiograma, que registra la actividad eléctrica del corazón, y el electroencefalograma, que registra la del cerebro.</p>
+    <p>Lo más interesante es que esas señales no son fijas. Cambian de ritmo cuando:</p>
+    <ul class="plain"><li>te asustas repentinamente</li><li>te concentras en una tarea</li><li>te relajas después de un largo día</li><li>te duermes</li></ul>
+    <p>Dicho de otro modo, tu estado interior tiene una huella física y medible. La pregunta no es si tienes energía. Es a qué ritmo está funcionando ahora mismo.</p>
+    <div class="practice"><b>En la práctica (2 min)</b><p>Pon dos dedos en la muñeca y cuenta tus latidos durante 30 segundos. Luego haz 5 respiraciones lentas y vuelve a contar. Fíjate en la diferencia y en cómo cambia tu atención con la respiración.</p></div>
+
+    <h2 id="d2">Descubrimiento 2: Tu cerebro cambia de frecuencia varias veces al día</h2>
+    <p>La actividad eléctrica del cerebro forma ondas que se miden en hercios, es decir, ciclos por segundo. Cada rango de frecuencia suele aparecer en un estado distinto:</p>
+    <div class="table-wrap"><table>
+      <tr><td>BETA</td><td>aprox. de 13 a 30 Hz</td><td>atención activa, resolver problemas</td></tr>
+      <tr><td>ALFA</td><td>aprox. de 8 a 12 Hz</td><td>despierto y relajado</td></tr>
+      <tr><td>THETA</td><td>aprox. de 4 a 8 Hz</td><td>somnolencia, soñar despierto</td></tr>
+      <tr><td>DELTA</td><td>menos de 4 Hz</td><td>sueño profundo</td></tr>
+    </table></div>
+    <p>Ningún rango es mejor que otro. El reto de la vida moderna es pasar horas seguidas en beta, con la mente acelerada y sin pausas para bajar el ritmo.</p>
+    <p>Una de las primeras observaciones que se hicieron con el electroencefalograma, a finales de la década de 1920, fue que el simple gesto de cerrar los ojos en reposo tiende a aumentar las ondas alfa.</p>
+    <div class="practice"><b>En la práctica (2 min)</b><p>Hoy, durante dos minutos, cierra los ojos y simplemente pon tu atención en escuchar los sonidos a tu alrededor, sin ponerles nombre. Es una pequeña puerta para salir del modo frenético del día a día.</p></div>
+
+    <h2 id="d3">Descubrimiento 3: Un corazón sano no late como un metrónomo</h2>
+    <p>Parece raro, pero el intervalo entre un latido y otro varía todo el tiempo, incluso en reposo. La ciencia lo llama variabilidad de la frecuencia cardíaca.</p>
+    <p>En general, una mayor variabilidad en reposo se asocia a un organismo más flexible, que se adapta mejor a los cambios y se recupera más rápido ante el estrés.</p>
+    <p>Algunos factores suelen reducir esa variabilidad:</p>
+    <ul class="plain"><li>el estrés prolongado</li><li>no dormir bien</li><li>el exceso de alcohol</li><li>el sedentarismo</li></ul>
+    <p>Otros tienden a favorecerla: dormir bien, moverte con regularidad y respirar despacio. Al inhalar, el corazón se acelera un poco. Al exhalar, se frena. Respirar despacio armoniza esa danza natural entre tu corazón y tu respiración.</p>
+    <p>El corazón no es solo una bomba. Es un instrumento que responde, latido a latido, a tu forma de vivir.</p>
+    <div class="practice"><b>En la práctica (3 min)</b><p>Inhala por la nariz contando hasta 4 y suelta el aire contando hasta 6. Repítelo durante 3 minutos, mejor antes de dormir o justo después de un momento de tensión. Observa cómo responde tu cuerpo.</p></div>
+
+    <h2 id="d4">Descubrimiento 4: Las emociones se contagian de persona a persona</h2>
+    <p>Sin darnos cuenta, imitamos los gestos, el tono de voz y la postura de quienes nos rodean. Ese reflejo automático influye en lo que sentimos. La psicología lo llama contagio emocional.</p>
+    <p>Y el efecto va más allá de una conversación. Un estudio que siguió a casi 5 mil personas durante 20 años, publicado en el British Medical Journal en 2008, encontró que la felicidad tiende a propagarse a través de relaciones y llega incluso a los amigos de los amigos de nuestros amigos.</p>
+    <p>El cuerpo también entra en sintonía. Investigadores de la Universidad de Gotemburgo, en Suecia, observaron que cuando varias personas cantan juntas en un coro, sus latidos tienden a sincronizarse.</p>
+    <p>Es decir: tu frecuencia emocional no termina en tu piel. Llega a quienes te rodean, y la frecuencia de esas personas también llega hasta ti.</p>
+    <div class="practice"><b>En la práctica</b><p>Elige una conversación importante de hoy. Antes de empezar, respira hondo una vez y decide con qué estado quieres entrar en ella: calma, curiosidad o amabilidad. Después, observa cómo responde la otra persona.</p></div>
+
+    <h2 id="d5">Descubrimiento 5: El sonido cambia tu energía en minutos</h2>
+    <p>El sonido es vibración: ondas que llegan a los oídos, pero que sienten en todo el cuerpo. Por eso una canción puede ponerte la piel de gallina, calmarte o darte ganas de bailar en cuestión de segundos.</p>
+    <p>Los estudios muestran que la música puede influir en la frecuencia cardíaca, la respiración y la sensación de ansiedad. Una revisión Cochrane, una de las referencias más respetadas en salud basada en la evidencia, concluyó que escuchar música antes de una cirugía ayudó a reducir la ansiedad de los pacientes.</p>
+    <p>El cuerpo también tiende a seguir el ritmo que escucha. Fíjate en cómo tus pasos se ajustan al compás de una canción, casi sin querer.</p>
+    <p>Y al revés también funciona. El ruido constante, como el tráfico, las alarmas y las notificaciones, mantiene al sistema nervioso en alerta, aunque creas que ya no te afecta.</p>
+    <p>Lo que entra por tus oídos a lo largo del día es, literalmente, una frecuencia que eliges tú, o que dejas que otros elijan por ti.</p>
+    <div class="practice"><b>En la práctica (5 min)</b><p>Elige una canción que te dé calma y escúchala entera, sin hacer nada más. Fíjate en cómo cambian tu respiración y tu cuerpo. Después, anota qué sonidos de tu día te suben o te bajan el ritmo.</p></div>
+
+    <h2 id="d6">Descubrimiento 6: La luz afecta tu reloj interno</h2>
+    <p>Dentro de ti hay un reloj que funciona en un ciclo de unas 24 horas: el ritmo circadiano. Regula el sueño, la temperatura del cuerpo, el hambre, el estado de ánimo y la energía a lo largo del día.</p>
+    <p>La principal señal que pone en hora ese reloj es la luz que llega a tus ojos. La luz de la mañana le indica al cuerpo que el día ha empezado. Por la noche, la oscuridad permite que se libere la melatonina, la hormona que te prepara para dormir.</p>
+    <p>El problema es que muchos vivimos al revés: poca luz natural durante el día, en espacios cerrados, y mucha luz de pantallas por la noche. La luz intensa de noche puede retrasar la melatonina y posponer el sueño.</p>
+    <p>Cuando ese reloj se desajusta, tu cuerpo lo nota: el descanso, la concentración y hasta el humor. Antes de intentar cambiar tu energía, vale la pena preguntarte si tu ritmo está en sintonía con el día.</p>
+    <div class="practice"><b>En la práctica (1 hora)</b><p>Por la mañana, sal a la calle y deja que te dé la luz natural con la mirada abierta, sin gafas de sol. Por la noche, baja el brillo de las pantallas una hora antes de dormir.</p></div>
+
+    <h2 id="d7">Descubrimiento 7: Donde pones tu atención, pones tu energía</h2>
+    <p>En 2010, investigadores de la Universidad de Harvard usaron una app para preguntar a más de 2 mil personas, en momentos aleatorios del día, qué estaban haciendo y en qué estaban pensando.</p>
+    <p>El resultado: casi la mitad del tiempo, la mente estaba en otra parte, lejos de lo que la persona hacía. Y, en general, la gente se sentía menos feliz cuando la mente divagaba.</p>
+    <p>Al mismo tiempo, la neurociencia muestra que el cerebro se reorganiza a partir de lo que repetimos. Es la neuroplasticidad: aquello a lo que prestas atención cada día tiende a reforzarse.</p>
+    <p>Eso convierte a la atención, quizá, en la frecuencia que más puedes elegir. No puedes controlar todo lo que pasa. Pero sí puedes decidir, muchas veces al día, dónde pones el foco.</p>
+    <div class="practice"><b>En la práctica (todo el día)</b><p>Programa hoy tres alarmas en el teléfono con la frase: "¿Dónde está mi atención ahora?". Cuando suene, responde con sinceridad y, si quieres, devuelve el foco a lo que estás haciendo.</p></div>
+
+    <p class="closing">Cambiar tu frecuencia rara vez exige grandes gestos. Empieza por lo que eliges repetir hoy.</p>
+  </section>
+</main>
+
+<section class="test" id="test">
+  <div class="wrap">
+    <h2 class="t"><span>Test</span> ¿Cómo está tu frecuencia?</h2>
+    <p class="intro">Del 0 al 10, marca cómo estás hoy en cada área. No hay respuestas correctas: es una foto de este momento. Cada área corresponde a uno de los 7 descubrimientos.</p>
+    <div class="giftbox">
+      <b>Tu regalo</b>
+      Al terminar recibes tu Informe de Frecuencia personal, en pantalla y en tu email:
+      <ul>
+        <li>Cómo está cada una de tus 7 áreas, explicado en palabras sencillas</li>
+        <li>Los patrones que se repiten entre tus áreas</li>
+        <li>Por dónde empezar, con prácticas cortas de la guía</li>
+        <li>Un plan de 7 días para empezar a cambiar</li>
+      </ul>
+    </div>
+
+    <form id="form" novalidate>
+      <div id="areas"></div>
+      <p class="progress" id="progress"></p>
+      <div class="q">
+        <label for="q1">¿Cuál fue tu puntuación más baja?</label>
+        <textarea id="q1" rows="2" autocomplete="off"></textarea>
+        <p class="hint" id="hint1"></p>
+      </div>
+      <div class="q">
+        <label for="q2">¿Qué práctica de esta guía vas a hacer esta semana para esa área?</label>
+        <textarea id="q2" rows="2" autocomplete="off"></textarea>
+      </div>
+      <div class="submit">
+        <button class="btn" type="submit" id="go" disabled>Ver mi resultado</button>
+        <span class="status" id="status"></span>
+      </div>
+    </form>
+
+    <!-- Paso 2: avance del informe y formulario del regalo -->
+    <section class="card" id="gift" hidden aria-live="polite">
+      <div id="teaser"></div>
+      <ul class="lock">
+        <b>Tu informe completo incluye</b>
+        <li>La lectura de tus 7 áreas, una por una</li>
+        <li>Los patrones entre tus áreas</li>
+        <li>Tus 2 prácticas para empezar</li>
+        <li>Tu plan de 7 días</li>
+      </ul>
+      <form id="giftForm" novalidate>
+        <div class="fields">
+          <div><label class="l" for="nombre">Nombre</label><input type="text" id="nombre" autocomplete="given-name" maxlength="60" required></div>
+          <div><label class="l" for="apellidos">Apellidos</label><input type="text" id="apellidos" autocomplete="family-name" maxlength="60" required></div>
+          <div class="full"><label class="l" for="email">Email donde recibir tu informe</label><input type="email" id="email" autocomplete="email" maxlength="120" required></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label>No rellenar<input type="text" id="web" tabindex="-1" autocomplete="off"></label></div>
+        <label class="check"><input type="checkbox" id="consent" required>
+          <span>He leído la <a href="#" id="privLink" target="_blank" rel="noopener">política de privacidad</a> y acepto que <span class="resp"></span> use mis datos para enviarme mi informe.</span></label>
+        <label class="check opt"><input type="checkbox" id="news">
+          <span>Opcional: quiero recibir novedades y contenidos de NeuroMystic Flow. Puedo darme de baja cuando quiera.</span></label>
+        <details class="legal"><summary>Información básica sobre protección de datos</summary>
+          <dl>
+            <dt>Responsable</dt><dd class="resp"></dd>
+            <dt>Para qué</dt><dd>Enviarte tu informe y, solo si marcas la segunda casilla, enviarte novedades.</dd>
+            <dt>Por qué podemos</dt><dd>Con tu consentimiento.</dd>
+            <dt>Quién más ve tus datos</dt><dd>Proveedores que los guardan y envían el correo (Google y Notion). No se venden ni se ceden a terceros.</dd>
+            <dt>Tus derechos</dt><dd>Acceder, rectificar, suprimir tus datos y retirar tu consentimiento escribiendo a <span class="mailc"></span>.</dd>
+          </dl>
+        </details>
+        <div class="submit">
+          <button class="btn" type="submit" id="giftGo">Quiero mi informe de regalo</button>
+          <span class="status" id="giftStatus"></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- Paso 3: informe completo -->
+    <section class="card" id="informe" hidden aria-live="polite"></section>
+
+    <p class="legal-foot">Este test es una herramienta de autoconocimiento. No es un diagnóstico y no sustituye el consejo médico ni psicológico.</p>
+  </div>
+</section>
+
+<script>
+/* ---------------- CONFIGURACIÓN: rellena estas líneas ---------------- */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxXTbfSvdlG_g0IkEct-sbhaRMk2NwryofkCU8N5aAs-lSEUPs6Lf2gswNrEQ0BsXFq/exec";                              // URL de tu Apps Script (termina en /exec). Vacía = modo demostración.
+const RESPONSABLE = "Cesar Gonzalez (NeuroMystic Flow)"; // quién trata los datos
+const EMAIL_CONTACTO = "zesare2000@gmail.com";          // donde te escriben para ejercer sus derechos
+const URL_PRIVACIDAD = "privacidad.html";                        // enlace a tu política de privacidad completa
+/* --------------------------------------------------------------------- */
+
+/* ===== MOTOR DE ANÁLISIS (compartido por la página y el Apps Script) =====
+   Entrada: 7 puntuaciones 0-10. Salida: un informe estructurado.
+   Todo es texto fijo escrito en lenguaje sencillo; no depende de ningún servicio externo. */
+
+var AREAS = [
+  { id: "cuerpo", n: 1, name: "Cuerpo", text: "Siento energía en mi cuerpo", zona: "cuerpo",
+    porque: "Cada latido, cada pensamiento y cada movimiento dependen de pequeñas señales eléctricas. Tu energía física es la base sobre la que se apoya todo lo demás.",
+    bajo: "Tu cuerpo va con poca energía ahora mismo. No es un fallo tuyo: suele ser la señal de que necesita descanso, movimiento suave o las dos cosas.",
+    medio: "Tienes energía a ratos, pero no es estable. Con pequeños hábitos puedes hacer que sea más constante durante el día.",
+    alto: "Tu cuerpo te está acompañando bien. Lo importante ahora es no darlo por hecho y mantener lo que lo sostiene.",
+    practica: "Pon dos dedos en la muñeca y cuenta tus latidos durante 30 segundos. Luego haz 5 respiraciones lentas y vuelve a contar. Fíjate en la diferencia y en cómo cambia tu atención con la respiración.", tiempo: "2 min" },
+  { id: "mente", n: 2, name: "Mente", text: "Sé bajar el ritmo cuando lo necesito", zona: "interior",
+    porque: "Tu cerebro cambia de ritmo varias veces al día. Ir rápido no es el problema; el problema es no poder bajar cuando lo necesitas.",
+    bajo: "Tu mente va muy deprisa y cuesta frenarla. Es muy común cuando pasamos horas seguidas en modo alerta, sin pausas.",
+    medio: "A veces sabes bajar el ritmo y a veces no. Es una habilidad que se entrena, y mejora rápido con prácticas cortas.",
+    alto: "Sabes bajar el ritmo cuando lo necesitas. Es una gran ventaja: cuídala con pausas regulares.",
+    practica: "Hoy, durante dos minutos, cierra los ojos y simplemente pon tu atención en escuchar los sonidos a tu alrededor, sin ponerles nombre. Es una pequeña puerta para salir del modo frenético del día a día.", tiempo: "2 min" },
+  { id: "corazon", n: 3, name: "Corazón", text: "Me siento en calma casi todo el día", zona: "interior",
+    porque: "Entre un latido y otro hay pequeñas variaciones, y respirar despacio ayuda a que se armonicen. Tu calma tiene un reflejo en el cuerpo.",
+    bajo: "Ahora mismo te cuesta sentir calma. Puede haber mucha tensión acumulada, y la respiración lenta es una de las herramientas más simples para empezar a soltarla.",
+    medio: "Tienes ratos de calma y ratos de tensión. Si identificas qué momentos te quitan la calma, ya has ganado mucho terreno.",
+    alto: "Te sientes en calma buena parte del día. Es una base preciosa para todo lo demás.",
+    practica: "Inhala por la nariz contando hasta 4 y suelta el aire contando hasta 6. Repítelo durante 3 minutos, mejor antes de dormir o justo después de un momento de tensión. Observa cómo responde tu cuerpo.", tiempo: "3 min" },
+  { id: "relaciones", n: 4, name: "Relaciones", text: "Las personas que me rodean me nutren", zona: "entorno",
+    porque: "Las emociones se contagian: imitamos gestos y tono de voz sin darnos cuenta. Las personas de tu entorno influyen en cómo te sientes, y tú influyes en ellas.",
+    bajo: "Ahora mismo las personas de tu entorno te dan poca energía. Puede hacer falta más cercanía con quien sí te suma, o poner algún límite pequeño.",
+    medio: "Algunas relaciones te suman y otras te cansan. Notar cuáles es el primer paso para dedicar tu energía donde mejor rinde.",
+    alto: "Estás rodeado de personas que te nutren. Es una de las mayores fuentes de bienestar que existen: cuídalas.",
+    practica: "Elige una conversación importante de hoy. Antes de empezar, respira hondo una vez y decide con qué estado quieres entrar en ella: calma, curiosidad o amabilidad. Después, observa cómo responde la otra persona.", tiempo: "" },
+  { id: "sonidos", n: 5, name: "Sonidos", text: "Elijo lo que escucho a lo largo del día", zona: "entorno",
+    porque: "El sonido es vibración y el cuerpo la siente. La música puede calmarte, y el ruido constante mantiene tu sistema nervioso en alerta aunque creas que ya no te afecta.",
+    bajo: "Hoy lo que escuchas te llega más por inercia que por elección: ruido, notificaciones, voces que no escogiste. Eso cansa más de lo que parece.",
+    medio: "A veces eliges lo que escuchas y a veces te lo imponen. Ganar un poco más de control te dará calma sin esfuerzo.",
+    alto: "Eliges con intención lo que escuchas. Eso protege tu energía a lo largo del día.",
+    practica: "Elige una canción que te dé calma y escúchala entera, sin hacer nada más. Fíjate en cómo cambian tu respiración y tu cuerpo. Después, anota qué sonidos de tu día te suben o te bajan el ritmo.", tiempo: "5 min" },
+  { id: "luz", n: 6, name: "Luz y sueño", text: "Mantengo un horario de sueño regular", zona: "cuerpo",
+    porque: "Tu reloj interno se pone en hora con la luz. Poca luz natural de día y mucha luz de pantallas por la noche lo desajustan, y se nota en el descanso, el ánimo y la concentración.",
+    bajo: "Tu reloj interno está desajustado. Dormir a horas distintas y recibir poca luz natural suele ser la causa más frecuente. Si llevas mucho tiempo durmiendo mal, consulta con un profesional de la salud.",
+    medio: "Tu ritmo de sueño es irregular algunos días. Con un horario más estable notarás la diferencia en poco tiempo.",
+    alto: "Tu reloj interno está en sintonía con el día. Es uno de los mejores cimientos para tu energía.",
+    practica: "Por la mañana, sal a la calle y deja que te dé la luz natural con la mirada abierta, sin gafas de sol. Por la noche, baja el brillo de las pantallas una hora antes de dormir.", tiempo: "1 hora" },
+  { id: "atencion", n: 7, name: "Atención", text: "Estoy presente en lo que hago", zona: "interior",
+    porque: "Casi la mitad del tiempo la mente está en otra parte, y eso suele restar bienestar. Aquello a lo que prestas atención cada día tiende a reforzarse.",
+    bajo: "Tu atención se te escapa con facilidad. Es normal en un mundo lleno de estímulos, y se puede entrenar con gestos muy pequeños.",
+    medio: "Estás presente a ratos y a ratos tu mente está en otro sitio. Los recordatorios simples funcionan muy bien.",
+    alto: "Sueles estar presente en lo que haces. Eso multiplica tu energía y tu calidad de vida.",
+    practica: "Programa hoy tres alarmas en el teléfono con la frase: \"¿Dónde está mi atención ahora?\". Cuando suene, responde con sinceridad y, si quieres, devuelve el foco a lo que estás haciendo.", tiempo: "todo el día" }
+];
+
+var ZONAS = {
+  cuerpo: { nombre: "Cuerpo y ritmo", que: "tu base física: la energía y el descanso",
+    baja: "Tu base física es hoy la zona que más pide cuidado. Cuando el cuerpo y el descanso están flojos, todo lo demás cuesta más." },
+  interior: { nombre: "Mundo interior", que: "lo que pasa dentro: mente, calma y atención",
+    baja: "Tu mundo interior es hoy la zona que más pide cuidado. Mente, calma y atención se influyen entre sí, así que mejorar una ayuda a las otras." },
+  entorno: { nombre: "Entorno", que: "lo que te rodea: personas y sonidos",
+    baja: "Tu entorno es hoy la zona que más pide cuidado. Lo que te rodea (personas y sonidos) entra en ti sin que lo notes, y es en lo que más puedes elegir." }
+};
+
+var PERFILES = {
+  pausa: { clave: "Pide pausa", titulo: "Tu frecuencia pide pausa",
+    texto: "Tu media está por debajo de 4. No es una nota: es una foto de hoy. Cuando varias áreas están bajas, lo más eficaz no es arreglarlo todo, sino elegir una práctica pequeña y repetirla unos días." },
+  transito: { clave: "En tránsito", titulo: "Estás en tránsito",
+    texto: "Tu media está entre 4 y 7. Hay áreas que te sostienen y otras que piden atención. Con dos prácticas pequeñas esta semana puedes notar un cambio real." },
+  alta: { clave: "Frecuencia alta", titulo: "Tu frecuencia es alta hoy",
+    texto: "Tu media es 7 o más. Lo importante ahora es sostener lo que ya te funciona y atender tu área más baja para que no te reste energía." }
+};
+
+function esc(s) {
+  return String(s === undefined || s === null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function nivelDe(v) { return v <= 3 ? "bajo" : v <= 6 ? "medio" : "alto"; }
+function etiquetaNivel(n) { return { bajo: "Pide atención", medio: "A medio camino", alto: "Punto fuerte" }[n]; }
+function r1(x) { return Math.round(x * 10) / 10; }
+
+function analizar(scores, nombre) {
+  var lista = AREAS.map(function (a) { return { a: a, v: scores[a.id], nivel: nivelDe(scores[a.id]) }; });
+  var vals = lista.map(function (x) { return x.v; });
+  var media = r1(vals.reduce(function (s, n) { return s + n; }, 0) / vals.length);
+  var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals), dif = max - min;
+  var orden = lista.slice().sort(function (x, y) { return x.v - y.v || x.a.n - y.a.n; });
+  var focos = orden.slice(0, 2), resto = orden.slice(2);
+  var bajas = dif === 0 ? [] : lista.filter(function (x) { return x.v === min; });
+  var altas = dif === 0 ? [] : lista.filter(function (x) { return x.v === max; });
+  var perfil = media < 4 ? PERFILES.pausa : media < 7 ? PERFILES.transito : PERFILES.alta;
+
+  // Zonas: promedio de cada grupo de áreas
+  var zonas = Object.keys(ZONAS).map(function (k) {
+    var items = lista.filter(function (x) { return x.a.zona === k; });
+    var m = r1(items.reduce(function (s, x) { return s + x.v; }, 0) / items.length);
+    return { clave: k, nombre: ZONAS[k].nombre, que: ZONAS[k].que, media: m, baja: ZONAS[k].baja };
+  });
+  var zs = zonas.slice().sort(function (x, y) { return x.media - y.media; });
+  var zonaBaja = (zs[zs.length - 1].media - zs[0].media >= 1.5) ? zs[0] : null;
+
+  // Patrones entre áreas
+  var s = function (id) { return scores[id]; }, c = [];
+  if (s("cuerpo") <= 4 && s("luz") <= 4) c.push({ clave: "Energía y descanso", sev: (s("cuerpo") + s("luz")) / 2,
+    texto: "Tu cuerpo y tu sueño están flojos a la vez. Suelen alimentarse el uno al otro: dormir mal quita energía, y tener poca energía hace que descanses peor. Por eso, ordenar el sueño (luz por la mañana, horario fijo) suele mover también el cuerpo." });
+  if (s("mente") <= 4 && s("atencion") <= 4) c.push({ clave: "Mente acelerada", sev: (s("mente") + s("atencion")) / 2,
+    texto: "Tu mente va deprisa y además cuesta mantener la atención. Cuando la mente corre, se dispersa más. Las pausas cortas de respiración y las alarmas de atención se refuerzan entre sí." });
+  if (s("corazon") <= 4 && s("relaciones") <= 4) c.push({ clave: "Calma y vínculos", sev: (s("corazon") + s("relaciones")) / 2,
+    texto: "Tu calma interior y tus relaciones están bajas a la vez. Se influyen: con tensión es más difícil conectar, y sin conexión es más difícil calmarse. Una sola conversación a la que entres con calma ya empieza a cambiar ese círculo." });
+  if (s("relaciones") >= 7 && s("corazon") <= 4) c.push({ clave: "Apoyo sin calma", sev: s("corazon"),
+    texto: "Tienes personas que te nutren, pero la calma interior todavía no llega. Apóyate en ellas: contarles cómo estás ya alivia, y puedes sumar la respiración lenta como práctica diaria." });
+  if (s("sonidos") <= 4 && s("mente") <= 4) c.push({ clave: "Ruido y mente", sev: (s("sonidos") + s("mente")) / 2,
+    texto: "Lo que escuchas durante el día y tu capacidad de bajar el ritmo van juntos. Menos ruido elegido por otros te da más margen mental." });
+  if (s("luz") <= 4 && s("atencion") <= 4) c.push({ clave: "Sueño y atención", sev: (s("luz") + s("atencion")) / 2,
+    texto: "Cuando el reloj interno está desajustado, la concentración es de lo primero que se resiente. Ordenar el sueño suele mejorar la atención sin tener que trabajarla directamente." });
+  c.sort(function (x, y) { return x.sev - y.sev; });
+  var patrones = c.slice(0, 3).map(function (p) { return { clave: p.clave, texto: p.texto }; });
+  var forma = "";
+  if (dif >= 5) { forma = "Perfil desigual"; patrones.push({ clave: forma,
+    texto: "Hay mucha distancia entre tu área más fuerte (" + altas[0].a.name + ", " + max + "/10) y la más baja (" + bajas[0].a.name + ", " + min + "/10). Es una buena noticia: ya sabes cómo se siente estar bien. Usa lo que te funciona en " + altas[0].a.name + " como ejemplo para " + bajas[0].a.name + "." }); }
+  else if (dif <= 2) { forma = "Perfil parejo"; patrones.push({ clave: forma,
+    texto: "Tus áreas están muy parecidas entre sí. Eso habla de estabilidad. Para subir, elige una sola área y mejórala un punto; el resto suele acompañar." }); }
+
+  var fuerte = altas.length ? altas[0] : null;
+  var f1 = focos[0].a, f2 = focos[1].a;
+  var plan = [
+    { dia: "Día 1", titulo: "Empieza por " + f1.name, texto: f1.practica, tiempo: f1.tiempo },
+    { dia: "Día 2", titulo: "Repite y observa", texto: "Repite la práctica de ayer (" + f1.name + "). Anota en una línea cómo te sientes antes y después.", tiempo: "" },
+    { dia: "Día 3", titulo: "Ahora " + f2.name, texto: f2.practica, tiempo: f2.tiempo },
+    { dia: "Día 4", titulo: "Repite y compara", texto: "Repite la práctica de " + f2.name + " y compárala con la del día 1. ¿Cuál te ha sentado mejor?", tiempo: "" },
+    { dia: "Día 5", titulo: fuerte ? "Apóyate en " + fuerte.a.name : "Elige tu favorita",
+      texto: fuerte ? "Haz algo que alimente tu punto fuerte (" + fuerte.a.name + "). Una idea: " + fuerte.a.practica + " Al terminar, pregúntate cómo puedes usar esa fuerza para sostener " + f1.name + "." : "Elige la práctica que más te haya gustado esta semana y hazla de nuevo.", tiempo: fuerte ? fuerte.a.tiempo : "" },
+    { dia: "Día 6", titulo: "Un día sin objetivos", texto: "Haz solo la práctica que más te haya gustado, sin exigirte nada más. Descansar bien también cuenta.", tiempo: "" },
+    { dia: "Día 7", titulo: "Repite el test", texto: "Vuelve a hacer el test y compara con el de hoy. ¿Qué área ha subido? ¿Cuál sigue pidiendo atención? Con eso eliges tu próxima semana.", tiempo: "" }
+  ];
+
+  return {
+    nombre: nombre || "", media: media, min: min, max: max, dif: dif, perfil: perfil, forma: forma,
+    lista: lista, orden: orden, focos: focos, resto: resto, bajas: bajas, altas: altas, fuerte: fuerte,
+    zonas: zonas, zonaBaja: zonaBaja, patrones: patrones, plan: plan,
+    todasIguales: dif === 0
+  };
+}
+
+/* ---- Texto plano (sirve como alternativa del correo y para "copiar") ---- */
+function renderTexto(r) {
+  var L = [];
+  L.push((r.nombre ? "Hola, " + r.nombre + ". " : "") + "Este es tu informe de frecuencia de hoy.", "");
+  L.push("TU FRECUENCIA HOY: " + r.perfil.titulo + " (media " + r.media + "/10)", r.perfil.texto, "");
+  L.push("TUS 7 ÁREAS");
+  r.lista.forEach(function (x) { L.push("- " + x.a.name + ": " + x.v + "/10 (" + etiquetaNivel(x.nivel) + ")"); });
+  L.push("");
+  if (r.patrones.length) { L.push("LO QUE DICE TU PERFIL"); r.patrones.forEach(function (p) { L.push("* " + p.clave + ": " + p.texto); }); L.push(""); }
+  L.push("DÓNDE EMPEZAR");
+  r.focos.forEach(function (x) { L.push("* " + x.a.name + " (" + x.v + "/10). " + x.a[x.nivel], "  " + x.a.practica); });
+  L.push("", "TU PLAN DE 7 DÍAS");
+  r.plan.forEach(function (d) { L.push(d.dia + " - " + d.titulo + ": " + d.texto); });
+  L.push("", "Repite el test dentro de una semana y mira qué ha cambiado.",
+    "Este informe es una herramienta de autoconocimiento. No es un diagnóstico ni sustituye el consejo médico o psicológico.", "", "NeuroMystic Flow");
+  return L.join("\n");
+}
+
+/* ---- HTML del correo (estilos en línea; fondo claro para que se vea bien en cualquier cliente) ---- */
+function renderEmailHTML(r) {
+  var AC = "#0b8fc2", INK = "#0f1b3a", MUT = "#51608a", LINE = "#dbe4f3", SOFT = "#f2f7fd";
+  var h = function (t) { return '<h2 style="margin:28px 0 8px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:' + AC + ';">' + t + "</h2>"; };
+  var p = function (t, st) { return '<p style="margin:0 0 12px;line-height:1.6;' + (st || "") + '">' + t + "</p>"; };
+  var bar = function (v) {
+    return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr>' +
+      '<td width="' + (v * 10) + '%" style="background:' + AC + ';height:8px;font-size:0;line-height:0;">&nbsp;</td>' +
+      '<td width="' + (100 - v * 10) + '%" style="background:' + LINE + ';height:8px;font-size:0;line-height:0;">&nbsp;</td></tr></table>';
+  };
+  var box = function (titulo, texto) {
+    return '<div style="background:' + SOFT + ';border-left:4px solid ' + AC + ';border-radius:8px;padding:12px 14px;margin:10px 0;"><div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:' + INK + ';margin-bottom:4px;">' + titulo + '</div><div style="line-height:1.55;">' + texto + "</div></div>";
+  };
+  var o = '<div style="background:#eef3fb;padding:20px 8px;font-family:Arial,Helvetica,sans-serif;color:' + INK + ';font-size:16px;">' +
+    '<div style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:14px;padding:26px 22px;">' +
+    '<div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:' + AC + ';">NeuroMystic Flow</div>' +
+    '<h1 style="margin:8px 0 6px;font-size:26px;line-height:1.2;">Tu informe de frecuencia</h1>' +
+    p((r.nombre ? "Hola, " + esc(r.nombre) + ". " : "") + "Aquí tienes tu informe personal. Es una foto de cómo estás hoy, no una nota.", "color:" + MUT);
+  o += '<div style="font-size:44px;font-weight:700;color:' + AC + ';line-height:1.1;">' + r.media + ' <span style="font-size:16px;color:' + MUT + ';font-weight:400;">/ 10 de media</span></div>';
+  o += '<h3 style="margin:6px 0 6px;font-size:20px;">' + esc(r.perfil.titulo) + "</h3>" + p(esc(r.perfil.texto));
+  o += h("Tus 7 áreas");
+  o += '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">';
+  r.lista.forEach(function (x) {
+    o += '<tr><td style="padding:6px 8px 6px 0;width:110px;font-size:14px;font-weight:700;">' + esc(x.a.name) + '</td><td style="padding:6px 0;">' + bar(x.v) + '</td><td style="padding:6px 0 6px 10px;width:36px;text-align:right;font-weight:700;">' + x.v + "</td></tr>";
+  });
+  o += "</table>";
+  if (r.zonaBaja) o += p("<strong>Zona que más pide cuidado: " + esc(r.zonaBaja.nombre) + ".</strong> " + esc(r.zonaBaja.baja), "margin-top:14px;");
+  if (r.patrones.length) { o += h("Lo que dice tu perfil"); r.patrones.forEach(function (x) { o += box(esc(x.clave), esc(x.texto)); }); }
+  if (r.fuerte) o += p("<strong>Tu punto fuerte: " + esc(r.fuerte.a.name) + " (" + r.fuerte.v + "/10).</strong> Úsalo como ancla: lo que te funciona ahí puede servirte de ejemplo para el resto.");
+  o += h("Dónde empezar esta semana");
+  r.focos.forEach(function (x) {
+    o += '<h3 style="margin:14px 0 4px;font-size:17px;">' + esc(x.a.name) + " · " + x.v + "/10</h3>" + p(esc(x.a[x.nivel])) +
+      p('<span style="color:' + MUT + ';font-size:14px;">Por qué importa:</span> ' + esc(x.a.porque), "font-size:15px;") +
+      box("En la práctica" + (x.a.tiempo ? " (" + esc(x.a.tiempo) + ")" : ""), esc(x.a.practica));
+  });
+  o += h("El resto de tus áreas");
+  r.resto.forEach(function (x) { o += p("<strong>" + esc(x.a.name) + " · " + x.v + "/10.</strong> " + esc(x.a[x.nivel]), "font-size:15px;"); });
+  o += h("Tu plan de 7 días");
+  r.plan.forEach(function (d) { o += p("<strong>" + esc(d.dia) + " · " + esc(d.titulo) + ".</strong> " + esc(d.texto), "font-size:15px;"); });
+  o += p("<strong>Repite el test dentro de una semana</strong> y mira qué ha cambiado. Cambiar tu frecuencia rara vez exige grandes gestos: empieza por lo que eliges repetir hoy.", "margin-top:18px;");
+  o += '<p style="margin:22px 0 0;font-size:12px;color:' + MUT + ';line-height:1.5;">Este informe es una herramienta de autoconocimiento. No es un diagnóstico y no sustituye el consejo médico ni psicológico. Si sientes que lo necesitas, habla con un profesional.</p>';
+  return o + "</div></div>";
+}
+
+
+const KEY = "frecuencia-test-v3";
+let state = { id: "", scores: {}, q1: "", q2: "", history: [] };
+let teaserOn = false;
+const $ = id => document.getElementById(id);
+const complete = () => AREAS.every(a => state.scores[a.id] !== undefined);
+const newId = () => "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.scores) state = Object.assign(state, s); } catch (e) {} if (!state.id) state.id = newId(); }
+function save() { try { localStorage.setItem(KEY, JSON.stringify({ id: state.id, scores: state.scores, q1: state.q1, q2: state.q2, history: state.history })); } catch (e) {} }
+function go(id) { const el = $(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+function build() {
+  $("areas").innerHTML = AREAS.map(a => {
+    let r = "";
+    for (let i = 0; i <= 10; i++) r += `<label><input type="radio" id="${a.id}-${i}" name="${a.id}" value="${i}" aria-label="${a.name}: ${i}"><span>${i}</span></label>`;
+    return `<div class="area" id="area-${a.id}" role="group" aria-label="${a.name}"><div><div class="name">${a.name}</div><div class="desc">${a.text}</div></div><div class="scale">${r}</div></div>`;
+  }).join("");
+  document.querySelectorAll(".resp").forEach(e => e.textContent = RESPONSABLE);
+  document.querySelectorAll(".mailc").forEach(e => e.textContent = EMAIL_CONTACTO);
+  const pl = $("privLink"); if (URL_PRIVACIDAD) pl.href = URL_PRIVACIDAD; else { pl.removeAttribute("href"); pl.removeAttribute("target"); }
+}
+function syncForm() {
+  AREAS.forEach(a => { const v = state.scores[a.id]; document.querySelectorAll(`input[name="${a.id}"]`).forEach(r => r.checked = v !== undefined && +r.value === v); });
+  $("q1").value = state.q1 || ""; $("q2").value = state.q2 || ""; updateProgress();
+}
+function updateProgress() {
+  const done = AREAS.filter(a => state.scores[a.id] !== undefined).length;
+  $("progress").textContent = done === AREAS.length ? "Las 7 áreas listas." : `Llevas ${done} de 7 áreas.`;
+  $("go").disabled = done !== AREAS.length;
+  document.querySelectorAll(".area").forEach(el => el.classList.remove("low"));
+  $("hint1").textContent = "";
+  if (done === AREAS.length) {
+    const r = analizar(state.scores);
+    if (!r.todasIguales) { r.bajas.forEach(x => $("area-" + x.a.id).classList.add("low")); $("hint1").textContent = `Tu puntuación más baja: ${r.bajas.map(x => x.a.name).join(" y ")} (${r.min}).`; }
+  }
+}
+
+/* ---- gráficos ---- */
+function radarSVG(r) {
+  const cx = 220, cy = 180, R = 110, n = r.lista.length;
+  const pt = (i, v) => { const ang = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(ang) * R * v / 10, cy + Math.sin(ang) * R * v / 10, ang]; };
+  let s = `<svg class="radar" viewBox="0 0 440 360" role="img" aria-label="Gráfico de tus 7 áreas">`;
+  [2.5, 5, 7.5, 10].forEach(v => { s += `<polygon class="ring" points="${r.lista.map((x, i) => pt(i, v).slice(0, 2).join(",")).join(" ")}"/>`; });
+  r.lista.forEach((x, i) => {
+    const [px, py, ang] = pt(i, 10); s += `<line class="axis" x1="${cx}" y1="${cy}" x2="${px}" y2="${py}"/>`;
+    const lx = cx + Math.cos(ang) * (R + 20), ly = cy + Math.sin(ang) * (R + 20) + 4;
+    const an = Math.cos(ang) > 0.3 ? "start" : Math.cos(ang) < -0.3 ? "end" : "middle";
+    s += `<text x="${lx}" y="${ly}" text-anchor="${an}">${esc(x.a.name)}</text>`;
+  });
+  s += `<polygon class="shape" points="${r.lista.map((x, i) => pt(i, x.v).slice(0, 2).join(",")).join(" ")}"/>`;
+  r.lista.forEach((x, i) => { const [px, py] = pt(i, x.v); s += `<circle class="dot" cx="${px}" cy="${py}" r="4"/>`; });
+  return s + `</svg>`;
+}
+const barRow = (cls, name, v, extra) => `<div class="${cls}"><b>${esc(name)}</b><div class="track"><div class="fill" style="width:${v * 10}%"></div></div><span class="num">${v}${extra || ""}</span></div>`;
+
+function resumenHTML(r) {
+  return `<h3>Tu frecuencia hoy</h3><div class="avg">${r.media} <small>/ 10 de media</small></div>
+    <h4 class="ptitle">${esc(r.perfil.titulo)}</h4><p class="profile">${esc(r.perfil.texto)}</p>${radarSVG(r)}
+    ${r.todasIguales ? "" : `<p class="lowline">Tu área que más pide cuidado: ${r.bajas.map(x => esc(x.a.name)).join(" y ")} (${r.min}/10).</p>`}`;
+}
+
+function informeHTML(r, prev) {
+  const dl = a => { if (!prev || prev.scores[a.id] === undefined) return ""; const d = state.scores[a.id] - prev.scores[a.id]; return ` <span class="delta">(${d > 0 ? "+" : ""}${d})</span>`; };
+  let h = resumenHTML(r);
+  h += `<div class="rsec"><h4>Tus 7 áreas${prev ? " (y el cambio desde tu último test)" : ""}</h4>${r.lista.map(x => barRow("arow", x.a.name, x.v, dl(x.a))).join("")}</div>`;
+  h += `<div class="rsec"><h4>Tus 3 zonas</h4>${r.zonas.map(z => barRow("zrow", z.nombre, z.media)).join("")}
+    <p class="why" style="margin-top:10px">${r.zonaBaja ? esc(r.zonaBaja.baja) : "Tus tres zonas están parecidas entre sí: tu energía está repartida de forma equilibrada."}</p></div>`;
+  if (r.patrones.length || r.fuerte) {
+    h += `<div class="rsec"><h4>Lo que dice tu perfil</h4>${r.patrones.map(p => `<div class="pat"><b>${esc(p.clave)}</b><p>${esc(p.texto)}</p></div>`).join("")}`;
+    if (r.fuerte) h += `<p><strong>Tu punto fuerte: ${esc(r.fuerte.a.name)} (${r.fuerte.v}/10).</strong> Úsalo como ancla: lo que te funciona ahí puede servirte de ejemplo para el resto.</p>`;
+    h += `</div>`;
+  }
+  h += `<div class="rsec"><h4>Dónde empezar esta semana</h4>${r.todasIguales ? '<p class="why">Todas tus áreas están igual. Empieza por la que más te llame la atención.</p>' : ""}` +
+    r.focos.map(x => `<div class="focus"><h5>${esc(x.a.name)} · ${x.v}/10<span class="chip">${etiquetaNivel(x.nivel)}</span></h5><p>${esc(x.a[x.nivel])}</p><p class="why"><strong>Por qué importa:</strong> ${esc(x.a.porque)}</p>
+      <div class="practice"><b>En la práctica${x.a.tiempo ? " (" + esc(x.a.tiempo) + ")" : ""}</b><p>${esc(x.a.practica)}</p></div></div>`).join("") + `</div>`;
+  h += `<div class="rsec rest"><h4>El resto de tus áreas</h4>${r.resto.map(x => `<details><summary>${esc(x.a.name)} · ${x.v}/10 · ${etiquetaNivel(x.nivel)}</summary><p>${esc(x.a[x.nivel])}</p><p class="why"><strong>Por qué importa:</strong> ${esc(x.a.porque)}</p><p><strong>Práctica${x.a.tiempo ? " (" + esc(x.a.tiempo) + ")" : ""}:</strong> ${esc(x.a.practica)}</p></details>`).join("")}</div>`;
+  h += `<div class="rsec"><h4>Tu plan de 7 días</h4><ol class="plan">${r.plan.map(d => `<li><span class="d">${esc(d.dia)}</span><div><b>${esc(d.titulo)}${d.tiempo ? " (" + esc(d.tiempo) + ")" : ""}</b><p>${esc(d.texto)}</p></div></li>`).join("")}</ol></div>`;
+  if ((state.q2 || "").trim()) h += `<div class="rsec"><h4>Tu compromiso</h4><div class="commit">${esc(state.q2.trim())}</div></div>`;
+  h += `<div class="rsec"><p><strong>Repite el test dentro de una semana.</strong> ¿Qué ha cambiado? Tu resultado de hoy queda guardado en este navegador para que puedas compararlo.</p>
+    <div class="actions"><button class="btn ghost sm" type="button" id="copy">Copiar mi resumen</button><button class="btn ghost sm" type="button" id="reset">Empezar de nuevo</button><span class="status" id="st2"></span></div></div>`;
+  return h;
+}
+
+/* ---- flujo ---- */
+function hideResults() { teaserOn = false; $("gift").hidden = true; $("informe").hidden = true; }
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type="radio"]')) { state.scores[e.target.name] = +e.target.value; save(); updateProgress(); if (teaserOn) hideResults(); }
+});
+document.addEventListener("input", e => { if (e.target.id === "q1" || e.target.id === "q2") { state[e.target.id] = e.target.value; save(); } });
+document.addEventListener("click", e => { const a = e.target.closest("[data-go]"); if (a) { e.preventDefault(); go(a.dataset.go); } });
+
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!complete()) return;
+  $("teaser").innerHTML = resumenHTML(analizar(state.scores));
+  $("gift").hidden = false; $("informe").hidden = true; teaserOn = true;
+  go("gift");
+});
+
+async function enviar(d) {
+  const payload = { id: state.id, nombre: d.nombre, apellidos: d.apellidos, email: d.email, consentimiento: true, novedades: d.news, web: d.web,
+    scores: Object.assign({}, state.scores), q1: state.q1, q2: state.q2, origen: "Regalo: Informe de Frecuencia" };
+  if (!ENDPOINT) return "demo";
+  try { await fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }); return "ok"; }
+  catch (e) { return "error"; }
+}
+
+$("giftForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const st = $("giftStatus"); st.className = "status";
+  const d = { nombre: $("nombre").value.trim(), apellidos: $("apellidos").value.trim(), email: $("email").value.trim(), news: $("news").checked, web: $("web").value };
+  if (d.nombre.length < 2) { st.textContent = "Escribe tu nombre."; st.className = "status err"; $("nombre").focus(); return; }
+  if (d.apellidos.length < 2) { st.textContent = "Escribe tus apellidos."; st.className = "status err"; $("apellidos").focus(); return; }
+  if (!/^\S+@\S+\.\S+$/.test(d.email)) { st.textContent = "Revisa el email: parece que falta algo."; st.className = "status err"; $("email").focus(); return; }
+  if (!$("consent").checked) { st.textContent = "Marca la casilla de la política de privacidad para recibir tu informe."; st.className = "status err"; return; }
+  $("giftGo").disabled = true; st.textContent = "Preparando tu informe…";
+  const resultado = await enviar(d);
+  const prev = state.history.length ? state.history[state.history.length - 1] : null;
+  const r = analizar(state.scores, d.nombre);
+  state.history.push({ date: new Date().toISOString(), scores: Object.assign({}, state.scores) }); state.history = state.history.slice(-10); save();
+  const aviso = resultado === "ok" ? `<p class="status" style="margin-bottom:12px">Te hemos enviado el informe a ${esc(d.email)}. Si no lo ves en unos minutos, mira en spam.</p>`
+    : resultado === "error" ? `<p class="status err" style="margin-bottom:12px">No pudimos enviar el correo, pero tu informe está aquí abajo.</p>`
+    : `<p class="status" style="margin-bottom:12px">Modo demostración: el informe no se ha enviado ni guardado.</p>`;
+  $("informe").innerHTML = `<h3 style="margin-bottom:10px">${esc(d.nombre)}, este es tu informe</h3>${aviso}${informeHTML(r, prev)}`;
+  $("informe").hidden = false; $("gift").hidden = true; teaserOn = false;
+  $("giftGo").disabled = false; st.textContent = "";
+  $("copy").onclick = async () => { try { await navigator.clipboard.writeText(renderTexto(r)); $("st2").textContent = "Copiado."; } catch (er) { $("st2").textContent = "No se pudo copiar."; } };
+  $("reset").onclick = () => { state.scores = {}; state.q1 = ""; state.q2 = ""; state.id = newId(); save(); syncForm(); hideResults(); $("giftForm").reset(); go("test"); };
+  go("informe");
+});
+
+/* ---- ondas del hero ---- */
+(function () {
+  const c = $("waves"), ctx = c.getContext("2d"); let t = 0, raf;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size() { const r = c.parentElement.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); c.width = r.width * d; c.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0); draw(); }
+  function draw() {
+    const w = c.clientWidth, h = c.clientHeight; ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1.4; ctx.shadowColor = "#3cc3f5"; ctx.shadowBlur = 10;
+    for (let k = 0; k < 9; k++) {
+      ctx.beginPath(); ctx.strokeStyle = `rgba(60,195,245,${0.12 + 0.05 * (k % 4)})`;
+      const base = h * (0.3 + 0.07 * k), amp = 18 + 9 * (k % 5), f = 0.006 + 0.0018 * k;
+      for (let x = 0; x <= w; x += 6) {
+        const y = base + Math.sin(x * f + t + k) * amp + Math.sin(x * f * 2.7 + t * 1.6 + k * 2) * amp * 0.35;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+  }
+  function loop() { t += 0.008; draw(); raf = requestAnimationFrame(loop); }
+  addEventListener("resize", size); size();
+  if (!reduce) loop();
+  document.addEventListener("visibilitychange", () => { if (reduce) return; if (document.hidden) cancelAnimationFrame(raf); else loop(); });
+})();
+
+build(); load(); syncForm();
+</script>
+</body>
+</html>
